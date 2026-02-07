@@ -1,0 +1,4 @@
+kilo = int(input())
+if kilo > 2 and kilo % 2 == 0:
+    print("YES")
+else:    print("NO")
