@@ -1,0 +1,29 @@
+from typing import List
+
+class Solution: 
+    def queryResults(self, limit: int, queries: List[List[int]]) -> List[int]: 
+        res = [0] * len(queries) 
+        balls = {}      # ball_index -> color
+        colors = {}     # color -> frequency
+        
+        for i, (idx, color) in enumerate(queries): 
+            
+            # If ball already had a color, decrease its count
+            if idx in balls:
+                old_color = balls[idx]
+                colors[old_color] -= 1
+                if colors[old_color] == 0:
+                    del colors[old_color]
+            
+            # Assign new color to ball
+            balls[idx] = color
+            
+            # Increase new color count
+            if color not in colors:
+                colors[color] = 0
+            colors[color] += 1
+            
+            # Number of distinct colors
+            res[i] = len(colors)
+        
+        return res
