@@ -1,0 +1,15 @@
+class Solution:
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+        n = len(image)
+        
+        for row in image:
+            left = 0
+            right = n - 1
+            
+            while left <= right:
+                # flip (swap) + invert at the same time
+                row[left], row[right] = 1 - row[right], 1 - row[left]
+                left += 1
+                right -= 1
+        
+        return image
