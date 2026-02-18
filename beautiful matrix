@@ -1,0 +1,13 @@
+row = 5
+column = 5
+matrix = []
+for i in range (row):
+    row = list(map(int , input().split()))
+    matrix.append(row)
+    for j in range (column):
+        if matrix[i][j]==1:
+            x = i+1
+            y = j+1
+            break
+moves = abs(x-3) + abs (y-3)
+print(moves)
