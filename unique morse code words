@@ -1,0 +1,13 @@
+class Solution:
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        transformations = set()
+        alphabet = dict(zip(string.ascii_lowercase,morse))
+        for word in words:
+            morseword = ""
+            for j in word:
+                morseword += alphabet[j]
+            transformations.add(morseword)
+        return len(transformations)
+
+
