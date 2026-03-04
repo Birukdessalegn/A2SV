@@ -1,0 +1,11 @@
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+ 
+res = []
+for k in a:
+    res.append(k)
+for k in b:
+    res.append(k)
+res.sort()
+print(*res)
