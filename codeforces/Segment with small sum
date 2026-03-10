@@ -1,0 +1,13 @@
+n , m = map(int , input().split())
+a = list(map(int , input().split()))
+
+left = 0
+current = 0
+maxmimum = 0
+for i in range(n):
+    current += a[i]
+    while current > m and left <= i:
+        current -= a[left]
+        left += 1
+    maxmimum = max(maxmimum , i - left + 1)
+print(maxmimum)
