@@ -1,0 +1,43 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+
+        m = len(s)
+        n = len(t)
+
+        count = {}
+        for ch in t:
+            if ch in count:
+                count[ch] += 1
+            else:
+                count[ch] = 1
+
+        window = {}
+        res = ""
+        left = 0
+        res_len = float("inf")
+        h = 0
+        x = len(count)  
+
+        for right in range(m):
+            ch = s[right]
+            if ch in window:
+                window[ch] += 1
+            else:
+                window[ch] = 1
+
+            if ch in count and window[ch] == count[ch]:
+                h += 1
+
+            while h == x:
+                win_size = right - left + 1
+                if win_size < res_len:
+                    res = s[left:right+1]
+                    res_len = win_size
+
+                left_char = s[left]
+                window[left_char] -= 1
+                if left_char in count and window[left_char] < count[left_char]:
+                    h -= 1
+                left += 1
+
+        return res
