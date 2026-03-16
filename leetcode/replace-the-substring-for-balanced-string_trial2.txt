@@ -1,0 +1,24 @@
+class Solution:
+    def balancedString(self, s: str) -> int:
+        letters = "QWER"
+        n = len(s)
+        target = n // 4
+        count = {}
+        for ch in s:
+            if ch in count:
+                count[ch] += 1
+            else:
+                count[ch] = 1
+        
+        left = 0
+        res = n 
+        
+        for right in range(n):
+            count[s[right]] -= 1
+
+            while left < n and all(count.get(c, 0) <= target for c in letters):
+                res = min(res, right - left + 1)
+                count[s[left]] += 1
+                left += 1
+        
+        return res
