@@ -1,0 +1,30 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s1) > len(s2):
+            return False
+        count = {}
+        window = {}
+        for i in range(len(s1)):
+            ch = s1[i]
+            if ch in count:
+                count[ch] += 1
+            else:
+                count[ch] = 1
+        left = 0
+        for right in range(len(s2)):
+            ch = s2[right]
+            if ch in window:
+                window[ch] += 1
+            else:
+                window[ch] = 1
+            if right - left + 1 > len(s1):
+                char = s2[left]
+                window[char] -= 1
+                if window[char] == 0:
+                    del window[char]
+                left += 1
+            if count == window:
+                return True
+        return False
+        
+        
