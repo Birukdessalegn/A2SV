@@ -1,0 +1,20 @@
+from typing import List
+class Solution:
+    def pancakeSort(self, arr: List[int]) -> List[int]:
+        res = []
+        n = len(arr)
+        
+        for curr_size in range(n, 0, -1):
+           
+            i = arr.index(curr_size)
+            if i == curr_size - 1:
+                continue
+            if i != 0:
+                arr[:i+1] = reversed(arr[:i+1])
+                res.append(i + 1)
+            
+            # move it to its correct position
+            arr[:curr_size] = reversed(arr[:curr_size])
+            res.append(curr_size)
+        
+        return res
